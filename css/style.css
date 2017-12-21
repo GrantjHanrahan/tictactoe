@@ -1,0 +1,127 @@
+
+
+html {
+  background: url("https://media.giphy.com/media/10h1BGkwYiIydi/giphy.gif") no-repeat center left fixed;
+  /*background: url() no-repeat center center fixed;*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /*background gifs
+  https://media.giphy.com/media/ZzyLGSIRktbFK/giphy.gif
+  https://media.giphy.com/media/asRx7MPFS0SBO/giphy.gif
+  https://media.giphy.com/media/XOxOo6XfV75Ic/giphy.gif
+  https://media.giphy.com/media/zJzQ8FyIbY8Y8/giphy.gif
+  https://media.giphy.com/media/a0oRmatmuk4da/giphy.gif
+  https://media.giphy.com/media/10h1BGkwYiIydi/giphy.gif
+  https://media.giphy.com/media/fvWohBhMgmQh2/giphy.gif
+  */
+}
+
+
+header{
+  color: white;
+  text-align: center;
+  font-size: 55px;
+  font-family: 'Pangolin', 'cursive';
+  font-weight: 900;
+  padding: 15px;
+
+}
+
+td{
+  border: 10px groove lightsteelblue;
+  height: 130px;
+  width: 150px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 90px;
+  font-weight: 900;
+  cursor: pointer;
+  /*font-family: 'Pangolin', cursive;*/
+  font-family: 'Permanent Marker', cursive;
+  color: orangered;
+}
+
+table{
+  border-collapse: collapse;
+  position: absolute;
+  left: 50%;
+  margin-left: -215px;
+  /*margin-right:50%;*/
+  /*margin-left: 155px;*/
+  /*table is 310px in width, so have set margin-left so that the table is not half off the page*/
+  /*top: 120px;*/
+  top: 17%;
+
+}
+
+table tr:first-child td{
+  /*this will select the three squares in the top row*/
+  border-top: 0;
+}
+
+table tr:last-child td{
+  border-bottom: 0;
+}
+table tr td:first-child{
+  /*select the first three columns*/
+  border-left:0;
+}
+table tr td:last-child{
+  border-right: 0;
+}
+
+.endgame{
+  display: none;
+  width: 280px;
+  height: 150px;
+  top: 180px;
+  position: absolute;
+  border-radius: 75px 30px;
+  border: 1px solid white;
+  background-color: black;
+  left: 53%;
+  margin-left: -140px;
+  padding-top: 70px;
+  padding-bottom: 50px;
+  text-align: center;
+  /*color: white;*/
+  font-size: 3em;
+  opacity: 0.8;
+}
+.text{
+  color: white;
+  padding-top: 35px;
+}
+
+footer{
+  position: absolute;
+  bottom: 5%;
+  margin: 0 auto;
+  /*left: 50%;*/
+
+}
+
+/*footer button{
+  padding: 8px 10px;
+  border-radius: 20px;
+  font-size: 1em;
+  font-family: 'Permanent Marker', cursive;
+  background: lightgreen;
+  margin-bottom: 5%;
+}*/
+button:hover{
+  background: orangered;
+}
+
+button{
+  margin-left: 6%;
+  margin-top: 5%;
+  padding: 8px;
+  border-radius: 20px;
+  font-size: 1.2em;
+  font-family: 'Permanent Marker', cursive;
+  background: lightgreen;
+  border-color: white;
+}
