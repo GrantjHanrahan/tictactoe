@@ -6,6 +6,8 @@ let startBoard;
 const player1 = 'X';
 const player2 = 'O';
 
+let gameIsOver = false;
+
 const $cells = $('.cell');
 
 const winningCombos = [
@@ -29,26 +31,32 @@ $('#reset').on('click', startGame);
 
 startGame();
 
+// const startGame = function(){
 function startGame(){
   $('.endgame').css('display', 'none');//win/ lose display message
   $("#mario_audio2").get(0).play();
   $("#mario_audio3").get(0).pause();
 
-  startBoard = Array.from([0,1,2,3,4,5,6,7,8]);
-  // making the array be every number from 0 - 9, will create an array of 9 elements. Will provide the keys for that element which is 0 to 9.
+  startBoard = Array.from(Array(9).keys());//creates a new array of 9 elements
+
   for (let i = 0; i < $cells.length; i++) {
     $cells[i].innerText = '';//make innerText of every cell empty
     $cells[i].style.removeProperty('background-color');
     $cells[i].addEventListener('click', turnClick);//removed false
   }
+
+  gameIsOver = false;
 }
 
 function turnClick(square){// this function can be called with eithr the human or ai player
-if( typeof startBoard[square.target.id] == 'number'){
-
+if( typeof startBoard[square.target.id] == 'number'){//cannot select an already selected square
   turn(square.target.id, player1);
-    if( !checkForTie()){
-    turn(bestSpot(), player2)
+    if( !gameIsOver && !checkForTie()  ){
+
+    setTimeout(function(){
+      turn(bestSpot(), player2)
+
+      },600);
     }
   }
 }
@@ -58,26 +66,25 @@ function turn(squareId, player){
   document.getElementById(squareId).innerText = player;
 
   let gameWon = checkWin(startBoard, player);
-  if (gameWon) {
-    gameOver(gameWon)
-  }
+  if (gameWon) gameOver(gameWon) //if game has been won call gameOver function
 }
 
 function checkWin(board, player){
-  let plays = board.reduce((accumuator,element,index) =>//board is the array being reduced
-    (element === player) ? accumuator.concat(index) : accumuator, []);
-    // if( element === player ){
-    //   accumuator.concat(index);
-    // } else {
-    //   accumuator, [];
-    // }
+  let plays = board.reduce((boardArray,boardElement,squareIndex) =>
+    (boardElement === player) ? boardArray.concat(squareIndex) : boardArray, []);
+    //reduce will go through every element in the board array
+    //It will then return a single value, the accumulator
+    //The accumulator is then initialized to an empty Array
+    //element = the element in the board array being iterated through
+    //index = the index of every square the player has played in
 
-    //reduce method - will go through every element on the board array. Will then give back one single value - the accumulator. The accumulator will then be initialized to an empty array. 'e' is the element. 'i' is the index. If the element equals the player - ternary operator line. Taking the accumulator array and adding the index to the array, then if the index does not equal the player, the accumuator will be returned as it was (nothing will be added). This process will find every index that the player has played in.
+    //If the board array element equals the player, then the index is concattenated to the boardArray
+    //If the element does not equal the player, the boardArray is returned as it was
   let gameWon = null;
 
-  for (let [index, win] of winningCombos.entries()) {//loop through every win combo
-    if( win.every(elem => plays.indexOf(elem) > -1)){
-      gameWon = {index: index, player: player};
+  for (let [index, win] of winningCombos.entries()){//loop through every win combo to see if the game has been won
+    if( win.every(winElement => plays.indexOf(winElement) > -1)){//check if the player has played in all of the array spots that count as a win
+      gameWon = {index, player};
       break;
     }
   }
@@ -85,23 +92,19 @@ function checkWin(board, player){
 }
 
 function gameOver(gameWon){
+
+  gameIsOver = true;
+
   for ( let index of winningCombos[gameWon.index]){
-    if( gameWon.player == player1){
-      document.getElementById(index).style.backgroundColor = "inherit";
-    } else {
-      document.getElementById(index).style.backgroundColor = "inherit";
-    }
+    document.getElementById(index).style.backgroundColor =
+    gameWon.player == player1 ? "inherit" : "inherit" ;
+
   }
   for (let i = 0; i < $cells.length; i++) {
     $cells[i].removeEventListener('click', turnClick, false);
   }
-  if( gameWon.player == player1){
-    declareWinner("You win!")
-  } else {
-    declareWinner("You lose!")
-  }
+  declareWinner( gameWon.player === player1 ? "You win!" : "You lose!");
 
-  // declareWinner(gameWon.player == player1 ? "You win!" : "You lose!");
   $("#mario_audio2").get(0).pause();
   $("#mario_audio3").get(0).play();
 }
@@ -116,11 +119,14 @@ function bestSpot(){
 }
 
 function emptySquares(){
-  return startBoard.filter( s => typeof s == 'number');
+  // return startBoard.filter( s => typeof s == 'number');
+  return startBoard.filter(function(squareElement){
+    return typeof squareElement === 'number';//filter all elements of the board, the elements that are equal to a number have not been selected yet and can be played into by the ai
+  });
 }
 
 function checkForTie(){
-  if( emptySquares().length == 0){
+  if( emptySquares().length === 0){
     for (let i = 0; i < $cells.length; i++) {
       $cells[i].style.backgroundColor = "inherit";
       $cells[i].removeEventListener('click', turnClick, false);
@@ -130,6 +136,7 @@ function checkForTie(){
   }
   return false;
 }
+
 }
 
-})
+});
