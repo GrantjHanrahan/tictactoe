@@ -44,7 +44,6 @@ function startGame(){
     $cells[i].style.removeProperty('background-color');
     $cells[i].addEventListener('click', turnClick);//removed false
   }
-
   gameIsOver = false;
 }
 
@@ -72,13 +71,13 @@ function turn(squareId, player){
 function checkWin(board, player){
   let plays = board.reduce((boardArray,boardElement,squareIndex) =>
     (boardElement === player) ? boardArray.concat(squareIndex) : boardArray, []);
-    //reduce will go through every element in the board array
-    //It will then return a single value, the accumulator
-    //The accumulator is then initialized to an empty Array
-    //element = the element in the board array being iterated through
-    //index = the index of every square the player has played in
+    // reduce will go through every element in the board array
+    // It will then return a single value, the accumulator (boardArray)
+    // The accumulator is then initialized to an empty Array
+    // boardElement = the element in the board array being iterated through
+    // squareIndex = the index of every square the player has played in
 
-    //If the board array element equals the player, then the index is concattenated to the boardArray
+    // If the boardArray element equals the player, then the index is concattenated to the boardArray
     //If the element does not equal the player, the boardArray is returned as it was
   let gameWon = null;
 
