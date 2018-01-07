@@ -23,6 +23,9 @@ const winningCombos = [
 
 $('#1P').on('click', singlePlayerGame)
 
+// player = 0
+// player = 1 - player;
+
 function singlePlayerGame(){
 $('#2P').css('display', 'none');
 $("#mario_audio1").get(0).pause();
@@ -71,7 +74,7 @@ function turn(squareId, player){
 function checkWin(board, player){
   let plays = board.reduce((boardArray,boardElement,squareIndex) =>
     (boardElement === player) ? boardArray.concat(squareIndex) : boardArray, []);
-    // reduce will go through every element in the board array
+    // reduce will go through every element in the boardArray
     // It will then return a single value, the accumulator (boardArray)
     // The accumulator is then initialized to an empty Array
     // boardElement = the element in the board array being iterated through

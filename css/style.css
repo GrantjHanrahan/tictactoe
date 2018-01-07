@@ -29,6 +29,48 @@ header{
 
 }
 
+h2#turnMessage{
+  display: none;
+  color: white;
+  text-align: center;
+  /*font-size: 55px;*/
+  font-family: 'Pangolin', 'cursive';
+  font-weight: 600;
+  padding: 15px;
+  top: 11%;
+  left: 25%;
+  position: absolute;
+  border-bottom: 2px dotted lightgreen;
+}
+
+h2#p1Score{
+  /*display: none;*/
+  color: white;
+  text-align: center;
+  font-family: 'Pangolin', 'cursive';
+  font-weight: 600;
+  padding: 2px;
+  top: 17%;
+  left: 78%;
+  position: absolute;
+  font-size: 200%;
+  margin-bottom: 10%;
+}
+
+h2#p2Score{
+  /*display: none;*/
+  color: white;
+  text-align: center;
+  font-family: 'Pangolin', 'cursive';
+  font-weight: 600;
+  font-size: 200%;
+  padding: 2px;
+  top: 25%;
+  left: 78%;
+  position: absolute;
+}
+
+
 td{
   border: 10px groove lightsteelblue;
   height: 130px;
@@ -47,12 +89,9 @@ table{
   border-collapse: collapse;
   position: absolute;
   left: 50%;
-  margin-left: -215px;
-  /*margin-right:50%;*/
-  /*margin-left: 155px;*/
+  margin-left: -20%;
   /*table is 310px in width, so have set margin-left so that the table is not half off the page*/
-  /*top: 120px;*/
-  top: 17%;
+  top: 25%;
 
 }
 
@@ -103,25 +142,23 @@ footer{
 
 }
 
-/*footer button{
-  padding: 8px 10px;
-  border-radius: 20px;
-  font-size: 1em;
-  font-family: 'Permanent Marker', cursive;
-  background: lightgreen;
-  margin-bottom: 5%;
-}*/
 button:hover{
   background: orangered;
 }
 
 button{
   margin-left: 6%;
-  margin-top: 5%;
-  padding: 8px;
+  margin-top: 3%;
+  padding: 3px;
   border-radius: 20px;
-  font-size: 1.2em;
+  font-size: 1.5em;
   font-family: 'Permanent Marker', cursive;
   background: lightgreen;
   border-color: white;
+  width: 9%;
+}
+
+button#reset, button#playAgain1P, button#playAgain2P{
+  margin-top: 2%;
+
 }
