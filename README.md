@@ -14,3 +14,10 @@ To do;
 - Add in Player vs Player functionality.
 
 - Allow player to change theme (background, music).
+
+Updated 8/1;
+- Added single and multiplayer options
+
+- Added player turn display
+
+- Added player scores
