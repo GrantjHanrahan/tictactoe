@@ -7,15 +7,6 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  /*background gifs
-  https://media.giphy.com/media/ZzyLGSIRktbFK/giphy.gif
-  https://media.giphy.com/media/asRx7MPFS0SBO/giphy.gif
-  https://media.giphy.com/media/XOxOo6XfV75Ic/giphy.gif
-  https://media.giphy.com/media/zJzQ8FyIbY8Y8/giphy.gif
-  https://media.giphy.com/media/a0oRmatmuk4da/giphy.gif
-  https://media.giphy.com/media/10h1BGkwYiIydi/giphy.gif
-  https://media.giphy.com/media/fvWohBhMgmQh2/giphy.gif
-  */
 }
 
 
@@ -33,7 +24,6 @@ h2#turnMessage{
   display: none;
   color: white;
   text-align: center;
-  /*font-size: 55px;*/
   font-family: 'Pangolin', 'cursive';
   font-weight: 600;
   padding: 15px;
@@ -44,7 +34,6 @@ h2#turnMessage{
 }
 
 h2#p1Score{
-  /*display: none;*/
   color: white;
   text-align: center;
   font-family: 'Pangolin', 'cursive';
@@ -58,7 +47,6 @@ h2#p1Score{
 }
 
 h2#p2Score{
-  /*display: none;*/
   color: white;
   text-align: center;
   font-family: 'Pangolin', 'cursive';

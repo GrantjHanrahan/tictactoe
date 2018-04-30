@@ -1,5 +1,8 @@
-let p1Score = 0;
-let p2Score = 0;
+
+let p1Score = localStorage.getItem('p1ScoreSave') || 0;
+let p2Score = localStorage.getItem('p2ScoreSave') || 0;
+p1Score = parseInt(p1Score);
+p2Score = parseInt(p2Score);
 
 $(document).ready(function(){
 $("#mario_audio1").get(0).play();
@@ -24,11 +27,16 @@ const square6 = $('#6');
 const square7 = $('#7');
 const square8 = $('#8');
 
+
+
 $('#turnMessage').css('display', 'none');
 $('#playAgain1P').css('display', 'none');
 $('#playAgain2P').css('display', 'none');//added a second playAgain button to prevent an issue where the 1 player game would run after selecting play again in 2 player mode.
 
 const onePlayerGame = function(){
+  $('#p1Score').html(`Player X Score: ${p1Score}`);
+  $('#p2Score').html(`Player O Score: ${p2Score}`);
+
 
   $('#playAgain1P').on('click', onePlayerGame).css('display', 'block');
   $('#1P').css('background', 'orangered').css('display', 'block');
@@ -90,6 +98,9 @@ const emptySquares = function(){
 ////////one player game only
 
 const twoPlayerGame = function(){
+  $('#p1Score').html(`Player X Score: ${p1Score}`);
+  $('#p2Score').html(`Player O Score: ${p2Score}`);
+
 
   $('.endgame').css('display', 'none');
   $('#2P').css('background', 'orangered').css('display', 'block');
@@ -124,8 +135,7 @@ const twoPlayerGame = function(){
     checkWin();
   })
   gameIsOver = false;
-
-}
+};
 
 const checkWin = function(){
 let p1Win = 'Player 1 Wins!!';
@@ -137,7 +147,8 @@ let gameWon = '';
       gameIsOver = true;
       gameWon = p1Win;
       p1Score++;
-      $('#p1Score').html(`Player X Score: ${p1Score}`);
+      localStorage.setItem('p1ScoreSave', p1Score);
+      // $('#p1Score').html(`Player X Score: ${p1Score}`);
       console.log(p1Score);
       $('#turnMessage').css('display', 'none');
       gameOver(gameWon);
@@ -149,7 +160,8 @@ let gameWon = '';
       gameIsOver = true;
       gameWon = p2Win;
       p2Score++;
-      $('#p2Score').html(`Player O Score: ${p2Score}`);
+      localStorage.setItem('p2ScoreSave', p2Score);
+      // $('#p2Score').html(`Player O Score: ${p2Score}`);
       console.log(p2Score);
       $('#turnMessage').css('display', 'none');
       gameOver(gameWon);
@@ -182,6 +194,8 @@ const resetGame = function(){
   totalMoves = 0;
   p1Score = 0;
   p2Score = 0;
+  localStorage.removeItem('p1ScoreSave')
+  localStorage.removeItem('p2ScoreSave')
   $('#p1Score').html('');
   $('#p2Score').html('');
   $('.endgame').css('display', 'none');
